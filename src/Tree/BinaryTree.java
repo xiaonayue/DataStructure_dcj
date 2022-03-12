@@ -32,6 +32,8 @@ public class BinaryTree {
         node7.setLeft(node8);
         node7.setRight(node9);
 
+
+
         System.out.println("前序遍历");
         binaryTree.preOrder();
 
@@ -40,7 +42,14 @@ public class BinaryTree {
 
         System.out.println("后序遍历");
         binaryTree.lastOrder();
-
+//        System.out.println("前序查找~");
+//        binaryTree.preSearch();
+//        System.out.println();
+//        System.out.println("中序查找~");
+//        binaryTree.midSearch();
+//        System.out.println();
+//        System.out.println("后序查找~");
+//        binaryTree.lastSearch();
 
     }
 
@@ -76,6 +85,30 @@ public class BinaryTree {
             root.lastOrder1();
         } else {
             System.out.println("二叉树为空,无法遍历~");
+        }
+    }
+    public void preSearch() {
+       Node res=  root.preSearch1(5);
+        if (res != null) {
+            System.out.printf("找到了[id=%d,name=%s]的信息",res.getId(),res.getName());
+        } else {
+            System.out.printf("没有找到[id=%d]的角色信息~",res.getId());
+        }
+    }
+    public void midSearch() {
+        Node res=  root.midSearch1(5);
+        if (res != null) {
+            System.out.printf("找到了[id=%d,name=%s]的信息",res.getId(),res.getName());
+        } else {
+            System.out.printf("没有找到[id=%d]的角色信息~",res.getId());
+        }
+    }
+    public void lastSearch() {
+        Node res=  root.lastSearch1(5);
+        if (res != null) {
+            System.out.printf("找到了[id=%d,name=%s]的信息",res.getId(),res.getName());
+        } else {
+            System.out.printf("没有找到[id=%d]的角色信息~",res.getId());
         }
     }
 }
@@ -141,7 +174,6 @@ class Node{
             right.preOrder1();
         }
     }
-
     //中序遍历, 输出顺序:左-->根-->右
     public void midOrder1() {
         if (left != null) {
@@ -161,5 +193,66 @@ class Node{
             right.lastOrder1();
         }
         System.out.println(this);
+    }
+    /**
+     * @param id
+     * @return 如果找到就返回对应的节点,找不到就返回null
+     */
+    public Node preSearch1(int id){
+        //比较当前节点是不是
+        if(this.id==id){
+            return this;
+        }
+        //如果root节点不是就向左遍历查找,先判断左节点是否为空
+        Node res = null;//临时遍历,如果查完了都找不到就返回null
+        if (left != null) {
+            res = left.preSearch1(id);
+        }
+        if (res != null) {//此时res不为空说明左子树找到
+            return res;
+        }
+        if (right != null) { //如果左节点不是就向右遍历查找,
+            res = right.preSearch1(id);
+        }
+        return res;
+        //这里不管有没有找到,都返回,
+        //找到就是找到了,找不到就返回null
+
+    }
+    public Node midSearch1(int id){
+        Node res = null;
+        if (left != null) {
+            res = left.midSearch1(id);
+        }
+        if (res != null) {//因为是递归,所以不管是什么找到了(res!=null)都直接返回
+            return res;
+        }
+        if (this.id == id) {
+            return this;
+        }
+        if (right != null) { //如果左节点不是就向右遍历查找,
+            res = right.preSearch1(id);
+        }
+        return res;
+    }
+
+    public Node lastSearch1(int id) {
+        Node res = null;
+        if (left != null) {
+            res = left.midSearch1(id);
+        }
+        if (res != null) {//左子树找到就返回
+            return res;
+        }
+        if (right != null) {
+            res = right.preSearch1(id);
+        }
+        if (res != null) {
+            return res;
+        }
+        if (this.id == id) {
+            return this;
+        }
+        return res;
     }
 }
