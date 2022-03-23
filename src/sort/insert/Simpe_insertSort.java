@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class Simpe_insertSort {
     public static void main(String[] args) {
-       int [] arry ={101,34,119,1,54,23};
+       int [] arry ={2,101,34,119,1,54,23};
         insertSort(arry);
     }
 
