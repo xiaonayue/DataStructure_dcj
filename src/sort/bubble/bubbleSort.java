@@ -79,8 +79,8 @@ public class bubbleSort {
     public static void Bubble(int[] arry) {//封装静态方法
         int temp = 0;
         boolean flag = false;//标识是否发生交换
-        for (int i = 0; i < arry.length - 1; i++) {//外面的循环需要arry.length - 1次
-            for (int j = 0; j < arry.length - 1 - i; j++) {//里面的需要arry.length -1- i次
+        for (int i = 0; i < arry.length - 1; i++) {//外面的循环需要arry.length - 1次(最多的情况)
+            for (int j = 0; j < arry.length - 1 - i; j++) {//里面的需要arry.length -1- i次(最多的情况)
                 if (arry[j] > arry[j + 1]) {//判断交换
                     flag = true;
                     temp = arry[j + 1];
