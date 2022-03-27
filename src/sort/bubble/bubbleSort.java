@@ -10,6 +10,7 @@ import java.util.Arrays;
 public class bubbleSort {
     public static void main(String[] args) {
         int arry[] = {3, 9, -1, 10, -2};//第三种方式创建数组,创建+声明
+        Bubble(arry);
         //int arry [] = {2,1,4,3,5};
 //        int temp = 0;
 //        for (int i = 0; i < arry.length-1; i++) {//比较次数是arry.length-1
